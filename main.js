@@ -33,13 +33,23 @@ for (let i=start; i<=year+nrYears; i++) {
     hd.setLanguages('lb')
     currentYear['lb'] = cleanup(hd.getHolidays(i))
 
-    data = data.concat(Object.keys(currentYear['en']).map(e => { return {'year': i, 'date': e, 'en': currentYear['en'][e].name, 'fr': currentYear['fr'][e].name, 'de': currentYear['de'][e].name, 'lb': currentYear['lb'][e].name}}))
+    data = data.concat(Object.keys(currentYear['en']).map(e => { 
+        return {
+            'year': i, 
+            'date': e,
+            'dayOfWeek': new Date(e).toLocaleString('default', {weekday:'long'}), 
+            'en': currentYear['en'][e].name, 
+            'fr': currentYear['fr'][e].name, 
+            'de': currentYear['de'][e].name, 
+            'lb': currentYear['lb'][e].name
+        }
+    }))
 }
 
 fs.writeFileSync('./out/'+filename+'.json', JSON.stringify(data, null, 2))
-let csv = 'year, date, name in english, name in french, name in german, name in luxembourgish'+ "\r\n"
+let csv = 'year, date, day of week, name in english, name in french, name in german, name in luxembourgish'+ "\r\n"
 csv += data.map(e => {
-     return e['year'] + ', ' + e['date'] + ', ' + e['en'] + ', ' + e['fr'] + ', ' + e['de'] + ', '+ e['lb'] + "\r\n"
+     return `${e['year']}, ${e['date']}, ${e['dayOfWeek']}, ${e['en']}, ${e['fr']}, ${e['de']}, ${e['lb']}` + "\r\n"
 }).reduce((o,e) => {
     return o+e
 }, "")
