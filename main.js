@@ -11,7 +11,7 @@ function cleanup(array) {
         e.date = e.date.replace(/\s.+$/, '')
         return e
     }).reduce((obj, item) => {
-        return {...obj, [item['date']]: item}
+        return {...obj, [item['date']+item['rule'].replace(/\s/g, '-')]: item}
     }, {})
 }
   
@@ -36,8 +36,8 @@ for (let i=start; i<=year+nrYears; i++) {
     data = data.concat(Object.keys(currentYear['en']).map(e => { 
         return {
             'year': i, 
-            'date': e,
-            'dayOfWeek': new Date(e).toLocaleString('default', {weekday:'long'}), 
+            'date': currentYear['en'][e].date,
+            'dayOfWeek': new Date(currentYear['en'][e].date).toLocaleString('default', {weekday:'long'}), 
             'en': currentYear['en'][e].name, 
             'fr': currentYear['fr'][e].name, 
             'de': currentYear['de'][e].name, 
