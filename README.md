@@ -12,6 +12,10 @@ The [specification file describing the public holidays in Luxembourg](https://gi
 ```npm run main```
 The generated files are available in the `out` folder.
 
+
+## Open data
+The resulting files are published on the luxembourgish open data portal: [Jours fériés légaux au Luxembourg](https://data.public.lu/fr/datasets/jours-feries-legaux-au-luxembourg/)
+
 ## License
 This software is (c) [Information and press service](https://sip.gouvernement.lu/en.html) of the luxembourgish government and licensed under the MIT license.
 
