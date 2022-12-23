@@ -9,7 +9,10 @@
   "license": "MIT",
   "dependencies": {
     "date-holidays": "3.16.11",
-    "date-holidays-ical": "^2.0.2"
+    "date-holidays-ical": "^2.0.2",
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.3.0",
+    "throttled-queue": "^2.1.4"
   },
   "type": "module"
 }
