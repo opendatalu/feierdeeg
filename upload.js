@@ -1,5 +1,6 @@
 import { uploadFile } from './odp.js'
 import * as fs from 'fs';
+import process from 'node:process';
 
 const config = {
     'de.ics': {'id': process.env.deIcs, 'mime': 'text/calendar'},
@@ -19,4 +20,4 @@ async function main() {
     }
 }
 
-main().then(() => {console.log((new Date()).toLocaleString(), 'Sync successful')}).catch(e => {console.error(e)})
+main().then(() => {console.log((new Date()).toLocaleString(), 'Sync successful')}).catch(e => {console.error(e); process.exitCode = 1;})
