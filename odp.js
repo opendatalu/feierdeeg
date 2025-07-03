@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import { fetchThrottle } from './utils.js'
 import { FormData, File } from 'node-fetch'
 import { HttpsProxyAgent } from 'https-proxy-agent'
+import ProxyFromEnv from 'proxy-from-env'
 
 dotenv.config()
 
@@ -32,7 +33,7 @@ async function uploadFile(filename, data, ds_id, res_id, mime) {
             "body": formData,
             "method": "POST"
         }
-        if (proxyAgent !== null) {
+        if (proxyAgent !== null && ProxyFromEnv.getProxyForUrl(url)) {
             params.agent = proxyAgent
         }
 
